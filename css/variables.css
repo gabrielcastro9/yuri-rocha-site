@@ -1,0 +1,54 @@
+:root {
+  color-scheme: light;
+  --blue-950: #061b3a;
+  --blue-900: #092854;
+  --blue-800: #0b3970;
+  --blue-700: #0d4f99;
+  --blue-600: #1264bd;
+  --blue-100: #dcecff;
+  --cream: #f8f3e8;
+  --cream-deep: #eee4d1;
+  --gold: #c79a42;
+  --gold-light: #e5c77e;
+  --ink: #10213a;
+  --muted: #5e6b7d;
+  --surface: #fffdf8;
+  --surface-2: #f2f6fa;
+  --line: rgba(9, 40, 84, .14);
+  --shadow: 0 24px 70px rgba(8, 33, 70, .14);
+  --radius: 1.25rem;
+  --radius-sm: .75rem;
+  --container: 1180px;
+  --header-h: 82px;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Outfit", "Inter", system-ui, sans-serif;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --cream: #0b1628;
+  --cream-deep: #101f35;
+  --ink: #eef4fc;
+  --muted: #aebbd0;
+  --surface: #0e1c30;
+  --surface-2: #12243d;
+  --line: rgba(212, 226, 247, .16);
+  --blue-100: #173960;
+  --shadow: 0 24px 70px rgba(0, 0, 0, .28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --cream: #0b1628;
+    --cream-deep: #101f35;
+    --ink: #eef4fc;
+    --muted: #aebbd0;
+    --surface: #0e1c30;
+    --surface-2: #12243d;
+    --line: rgba(212, 226, 247, .16);
+    --blue-100: #173960;
+    --shadow: 0 24px 70px rgba(0, 0, 0, .28);
+  }
+}

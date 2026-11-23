@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Mapa de Itapajé no painel Yuri Rocha.">
+  <title>Mapa | Painel Yuri Rocha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="../js/map-data.js" defer></script>
+  <script src="../js/admin-shell.js" defer></script>
+  <script src="../js/admin.js" defer></script>
+  <script src="../js/admin-map.js" defer></script>
+</head>
+<body class="admin-body" data-admin-page="mapa">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="dashboard-shell">
+    <aside class="sidebar" id="sidebar" data-shell="sidebar" aria-label="Navegação administrativa"></aside>
+    <div class="dashboard-main">
+      <header class="topbar" data-shell="topbar"></header>
+      <main id="conteudo" class="dashboard-content">
+        <div id="global-message" class="message toast-message" role="status" aria-live="polite" hidden></div>
+
+        <section class="workspace-hero">
+          <div>
+            <p class="eyebrow">Território</p>
+            <h1>Mapa de Itapajé</h1>
+            <p class="muted">Pontos e entregas desta página alimentam o mapa público da home.</p>
+          </div>
+          <div class="panel-header-actions">
+            <button class="button button-secondary" type="button" data-reset-map>Restaurar exemplos</button>
+            <button class="button button-primary" type="button" data-new-location>＋ Novo ponto</button>
+          </div>
+        </section>
+
+        <section class="metrics-grid map-metrics" aria-label="Totais do mapa">
+          <article class="metric-card">
+            <span class="metric-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.2 9.2 5l5.6 2.1L20 5.2V17.4l-5.2 2.1-5.6-2.1L4 19.2V7.2z"/><path d="M9.2 5v12.2M14.8 7.1v12.2"/><circle cx="12" cy="11.2" r="1.7" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <div><span>Pontos no mapa</span><strong id="map-metric-locations">0</strong></div>
+          </article>
+          <article class="metric-card">
+            <span class="metric-icon published" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s6.4-5.5 6.4-10A6.4 6.4 0 0 0 5.6 11c0 4.5 6.4 10 6.4 10z"/><path d="M9.1 11.2 11 13l3.6-3.8"/></svg>
+            </span>
+            <div><span>Com entregas</span><strong id="map-metric-active">0</strong></div>
+          </article>
+          <article class="metric-card">
+            <span class="metric-icon latest" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3.8" width="12" height="16.4" rx="2"/><path d="M9 3.8h6v2.4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3.8z"/><path d="M9 11.2h6M9 14.6h4.2"/></svg>
+            </span>
+            <div><span>Entregas cadastradas</span><strong id="map-metric-items">0</strong></div>
+          </article>
+        </section>
+
+        <div class="map-workspace">
+          <section class="panel" aria-labelledby="points-title">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Comunidades</p>
+                <h2 id="points-title">Pontos no mapa</h2>
+              </div>
+              <button class="button button-primary" type="button" data-new-location>＋ Novo ponto</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Ponto</th><th>Região</th><th>Coordenadas</th><th>Itens</th><th><span class="sr-only">Ações</span></th></tr>
+                </thead>
+                <tbody id="map-locations-body"></tbody>
+              </table>
+              <div id="map-locations-empty" class="empty-state" hidden>
+                <span aria-hidden="true">◉</span>
+                <h3>Nenhum ponto no mapa</h3>
+                <p>Crie um ponto para marcar uma comunidade em Itapajé.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="deliveries-title">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Acompanhamento</p>
+                <h2 id="deliveries-title">Emendas, obras e projetos</h2>
+              </div>
+              <button class="button button-primary" type="button" data-new-delivery>＋ Nova entrega</button>
+            </div>
+            <div class="toolbar">
+              <div class="search-field">
+                <label class="sr-only" for="map-delivery-search">Buscar entregas</label>
+                <span aria-hidden="true">⌕</span>
+                <input id="map-delivery-search" type="search" placeholder="Buscar por título ou comunidade…">
+              </div>
+              <div class="field inline-field">
+                <label for="map-type-filter">Tipo</label>
+                <select id="map-type-filter">
+                  <option value="">Todos</option>
+                  <option>Emenda</option>
+                  <option>Obra</option>
+                  <option>Projeto</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Entrega</th><th>Comunidade</th><th>Tipo</th><th>Status</th><th><span class="sr-only">Ações</span></th></tr>
+                </thead>
+                <tbody id="map-deliveries-body"></tbody>
+              </table>
+              <div id="map-deliveries-empty" class="empty-state" hidden>
+                <span aria-hidden="true">▤</span>
+                <h3>Nenhuma entrega cadastrada</h3>
+                <p>Vincule emendas, obras ou projetos a um ponto do mapa.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section id="mapa-ponto" class="panel editor-panel" aria-labelledby="location-editor-title" hidden>
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Ponto no mapa</p>
+              <h2 id="location-editor-title">Novo ponto</h2>
+            </div>
+            <button class="button button-icon" type="button" data-close-location aria-label="Fechar editor de ponto">×</button>
+          </div>
+          <form id="location-form" novalidate>
+            <input id="location-id" type="hidden">
+            <div class="editor-fields">
+              <div class="field">
+                <label for="location-name">Nome da comunidade *</label>
+                <input id="location-name" type="text" maxlength="80" required>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="location-region">Região *</label>
+                  <select id="location-region" required></select>
+                </div>
+                <div class="field">
+                  <label class="checkbox-field"><input id="location-visible" type="checkbox" checked> Visível no mapa público</label>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="location-lon">Longitude *</label>
+                  <input id="location-lon" type="number" step="0.0001" min="-39.73" max="-39.40" required>
+                  <small>Itapajé fica cerca de −39,59. Ou clique no mapa ao lado.</small>
+                </div>
+                <div class="field">
+                  <label for="location-lat">Latitude *</label>
+                  <input id="location-lat" type="number" step="0.0001" min="-3.87" max="-3.61" required>
+                  <small>Itapajé fica cerca de −3,69.</small>
+                </div>
+              </div>
+              <div class="field">
+                <span>Posição no mapa</span>
+                <p class="muted" id="map-picker-hint">Clique no contorno para posicionar o ponto.</p>
+                <div class="admin-map-picker" id="map-picker" hidden></div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="location-dx">Ajuste do rótulo (X)</label>
+                  <input id="location-dx" type="number" step="0.001" value="0">
+                </div>
+                <div class="field">
+                  <label for="location-dy">Ajuste do rótulo (Y)</label>
+                  <input id="location-dy" type="number" step="0.001" value="0">
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="button button-secondary" type="button" data-close-location>Cancelar</button>
+              <button class="button button-primary" type="submit">Salvar ponto</button>
+            </div>
+          </form>
+        </section>
+
+        <section id="mapa-entrega" class="panel editor-panel" aria-labelledby="delivery-editor-title" hidden>
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Entrega</p>
+              <h2 id="delivery-editor-title">Nova entrega</h2>
+            </div>
+            <button class="button button-icon" type="button" data-close-delivery aria-label="Fechar editor de entrega">×</button>
+          </div>
+          <form id="delivery-form" novalidate>
+            <input id="delivery-id" type="hidden">
+            <div class="editor-fields">
+              <div class="field">
+                <label for="delivery-title">Título *</label>
+                <input id="delivery-title" type="text" maxlength="140" required>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="delivery-location">Comunidade *</label>
+                  <select id="delivery-location" required></select>
+                </div>
+                <div class="field">
+                  <label for="delivery-type">Tipo *</label>
+                  <select id="delivery-type" required>
+                    <option>Emenda</option>
+                    <option>Obra</option>
+                    <option>Projeto</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="delivery-status">Status *</label>
+                  <select id="delivery-status" required>
+                    <option>Planejado</option>
+                    <option>Em andamento</option>
+                    <option>Entregue</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="delivery-date">Data</label>
+                  <input id="delivery-date" type="date">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="delivery-value">Valor (R$)</label>
+                  <input id="delivery-value" type="number" min="0" step="1" placeholder="0">
+                </div>
+                <div class="field">
+                  <label class="checkbox-field"><input id="delivery-demo" type="checkbox" checked> Marcar como demonstrativo</label>
+                </div>
+              </div>
+              <div class="field">
+                <label for="delivery-summary">Resumo *</label>
+                <textarea id="delivery-summary" rows="3" maxlength="400" required></textarea>
+              </div>
+              <div class="field">
+                <label for="delivery-image">URL da foto de capa</label>
+                <input id="delivery-image" type="url" placeholder="https://…">
+              </div>
+              <div class="field">
+                <label for="delivery-image-file">Ou escolha da galeria</label>
+                <input id="delivery-image-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+                <small>JPEG, PNG, WebP ou GIF. Máximo de 2 MB.</small>
+              </div>
+              <div id="delivery-image-preview" class="file-info" aria-live="polite"></div>
+              <div class="field">
+                <label for="delivery-photos">Fotos extras (uma URL por linha)</label>
+                <textarea id="delivery-photos" rows="3" placeholder="https://…"></textarea>
+              </div>
+              <div class="field">
+                <label for="delivery-photos-file">Ou escolha da galeria</label>
+                <input id="delivery-photos-file" type="file" multiple accept="image/jpeg,image/png,image/webp,image/gif">
+                <small>Até 8 imagens no total, 2 MB por arquivo.</small>
+              </div>
+              <div id="delivery-photos-preview" class="gallery-file-list" aria-live="polite"></div>
+              <div class="field">
+                <label for="delivery-video">Vídeo do YouTube</label>
+                <input id="delivery-video" type="url" placeholder="https://www.youtube.com/watch?v=…">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="button button-secondary" type="button" data-close-delivery>Cancelar</button>
+              <button class="button button-primary" type="submit">Salvar entrega</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+  <dialog id="map-confirm-dialog" class="confirm-dialog" aria-labelledby="map-confirm-title">
+    <h2 id="map-confirm-title">Excluir item?</h2>
+    <p id="map-confirm-text">Esta ação remove o item do banco de dados e do mapa público.</p>
+    <div class="form-actions">
+      <button class="button button-secondary" type="button" data-cancel-map-delete>Cancelar</button>
+      <button class="button button-danger" type="button" data-confirm-map-delete>Excluir</button>
+    </div>
+  </dialog>
+</body>
+</html>

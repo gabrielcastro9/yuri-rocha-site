@@ -1,0 +1,12 @@
+{
+  "name": "yuri-rocha-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@vercel/blob": "^2.3.0"
+  }
+}

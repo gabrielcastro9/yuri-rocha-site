@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Ouvidoria do painel Yuri Rocha.">
+  <title>Ouvidoria | Painel Yuri Rocha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="../js/admin-shell.js" defer></script>
+  <script src="../js/admin.js" defer></script>
+</head>
+<body class="admin-body" data-admin-page="ouvidoria">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="dashboard-shell">
+    <aside class="sidebar" id="sidebar" data-shell="sidebar" aria-label="Navegação administrativa"></aside>
+    <div class="dashboard-main">
+      <header class="topbar" data-shell="topbar"></header>
+      <main id="conteudo" class="dashboard-content">
+        <div id="global-message" class="message toast-message" role="status" aria-live="polite" hidden></div>
+
+        <section class="workspace-hero">
+          <div>
+            <p class="eyebrow">Escuta da cidade</p>
+            <h1>Ouvidoria</h1>
+            <p class="muted">Manifestações enviadas pelo formulário público, gravadas no banco. <span id="ouvidoria-count">0 manifesto(s)</span></p>
+          </div>
+          <a class="button button-secondary" href="../contato.html" target="_blank" rel="noopener">Ver formulário ↗</a>
+        </section>
+
+        <div class="toolbar">
+          <div class="search-field">
+            <label class="sr-only" for="ouvidoria-search">Buscar manifestações</label>
+            <span aria-hidden="true">⌕</span>
+            <input id="ouvidoria-search" type="search" placeholder="Buscar por nome, assunto, e-mail ou protocolo…">
+          </div>
+          <div class="field inline-field">
+            <label for="ouvidoria-type">Tipo</label>
+            <select id="ouvidoria-type">
+              <option value="">Todos</option>
+              <option>Sugestão</option>
+              <option>Solicitação</option>
+              <option>Elogio</option>
+              <option>Outro</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="inbox-workspace">
+          <aside class="inbox-rail" aria-label="Lista de manifestações">
+            <div id="inbox-list" class="inbox-list"></div>
+            <div id="ouvidoria-empty" class="empty-state" hidden>
+              <span aria-hidden="true">✉</span>
+              <h3>Caixa vazia</h3>
+              <p>Quando alguém enviar o formulário, o registro aparece aqui.</p>
+            </div>
+          </aside>
+          <section id="inbox-detail" class="inbox-detail panel" aria-live="polite"></section>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

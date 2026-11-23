@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Visão geral do painel Yuri Rocha.">
+  <title>Visão geral | Painel Yuri Rocha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="../js/admin-shell.js" defer></script>
+  <script src="../js/admin.js" defer></script>
+</head>
+<body class="admin-body" data-admin-page="overview">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="dashboard-shell">
+    <aside class="sidebar" id="sidebar" data-shell="sidebar" aria-label="Navegação administrativa"></aside>
+    <div class="dashboard-main">
+      <header class="topbar" data-shell="topbar"></header>
+      <main id="conteudo" class="dashboard-content">
+        <div id="global-message" class="message toast-message" role="status" aria-live="polite" hidden></div>
+
+        <section class="workspace-hero">
+          <div>
+            <p class="eyebrow" id="overview-date">Hoje</p>
+            <h1 class="sr-only">Visão geral</h1>
+          </div>
+          <a class="button button-primary" href="noticia.html">＋ Escrever notícia</a>
+        </section>
+
+        <section class="metrics-grid metrics-grid-6" aria-label="Indicadores do painel">
+          <a class="metric-card metric-link" href="noticias.html">
+            <span class="metric-icon" aria-hidden="true">▤</span>
+            <div><span>Notícias</span><strong id="metric-total">0</strong></div>
+          </a>
+          <a class="metric-card metric-link" href="noticias.html">
+            <span class="metric-icon published" aria-hidden="true">✓</span>
+            <div><span>Publicadas</span><strong id="metric-published">0</strong></div>
+          </a>
+          <a class="metric-card metric-link" href="noticias.html">
+            <span class="metric-icon draft" aria-hidden="true">✎</span>
+            <div><span>Rascunhos</span><strong id="metric-drafts">0</strong></div>
+          </a>
+          <a class="metric-card metric-link" href="ouvidoria.html">
+            <span class="metric-icon latest" aria-hidden="true">✉</span>
+            <div><span>Ouvidoria</span><strong id="metric-ouvidoria">0</strong></div>
+          </a>
+          <a class="metric-card metric-link" href="mapa.html">
+            <span class="metric-icon" aria-hidden="true">◉</span>
+            <div><span>Pontos no mapa</span><strong id="metric-map">0</strong></div>
+          </a>
+          <a class="metric-card metric-link" href="mapa.html">
+            <span class="metric-icon published" aria-hidden="true">▤</span>
+            <div><span>Entregas</span><strong id="metric-deliveries">0</strong></div>
+          </a>
+        </section>
+
+        <section class="quick-grid" aria-label="Atalhos">
+          <a class="quick-card" href="noticias.html">
+            <span class="quick-ico" aria-hidden="true">▤</span>
+            <h2>Notícias</h2>
+            <p>Publique, edite ou retire do ar o que aparece no portal.</p>
+            <span class="quick-go">Abrir página →</span>
+          </a>
+          <a class="quick-card" href="mapa.html">
+            <span class="quick-ico" aria-hidden="true">◉</span>
+            <h2>Mapa</h2>
+            <p>Organize comunidades, emendas, obras e projetos de Itapajé.</p>
+            <span class="quick-go">Abrir página →</span>
+          </a>
+          <a class="quick-card" href="sobre.html">
+            <span class="quick-ico" aria-hidden="true">✎</span>
+            <h2>Página Sobre</h2>
+            <p>Edite textos, foto e blocos que aparecem na página Sobre.</p>
+            <span class="quick-go">Abrir página →</span>
+          </a>
+          <a class="quick-card" href="ouvidoria.html">
+            <span class="quick-ico" aria-hidden="true">✉</span>
+            <h2>Ouvidoria</h2>
+            <p>Leia as manifestações enviadas pela população.</p>
+            <span class="quick-go">Abrir página →</span>
+          </a>
+          <a class="quick-card quick-card-accent" href="noticia.html">
+            <span class="quick-ico" aria-hidden="true">＋</span>
+            <h2>Nova notícia</h2>
+            <p>Editor completo, com prévia em tempo real.</p>
+            <span class="quick-go">Escrever →</span>
+          </a>
+        </section>
+
+        <div class="overview-columns">
+          <section class="panel feed-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Recentes</p>
+                <h2>Últimas notícias</h2>
+              </div>
+              <a class="button button-secondary" href="noticias.html">Ver todas</a>
+            </div>
+            <div id="overview-news" class="feed-list"></div>
+          </section>
+          <section class="panel feed-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Escuta</p>
+                <h2>Ouvidoria recente</h2>
+              </div>
+              <a class="button button-secondary" href="ouvidoria.html">Ver caixa</a>
+            </div>
+            <div id="overview-ouvidoria" class="feed-list"></div>
+          </section>
+        </div>
+        <p class="overview-foot muted">Atualização mais recente no banco: <strong id="metric-latest">—</strong></p>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

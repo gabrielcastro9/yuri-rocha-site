@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Acesso restrito ao painel administrativo do portal Yuri Rocha.">
+  <title>Login administrativo | Yuri Rocha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="../js/admin.js" defer></script>
+</head>
+<body class="admin-body login-page" data-admin-page="login">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <main id="conteudo" class="login-layout">
+    <section class="login-brand" aria-labelledby="brand-title">
+      <a class="brand" href="../index.html" aria-label="Yuri Farias Rocha — página inicial">
+        <span class="brand-mark" aria-hidden="true">YR</span>
+        <span><strong>Yuri Farias Rocha</strong><small>Vereador de Itapajé</small></span>
+      </a>
+      <div>
+        <p class="eyebrow">Mandato de Itapajé</p>
+        <h1 id="brand-title">Vereador a serviço de Itapajé.</h1>
+        <p>Primeiro mandato, eleito em 2024. Entre para publicar notícias, atualizar o mapa das comunidades e ler a ouvidoria.</p>
+      </div>
+      <p class="login-brand-note">© 2026 Yuri Farias Rocha</p>
+    </section>
+
+    <section class="login-panel" aria-labelledby="login-title">
+      <div class="login-card">
+        <p class="eyebrow">Painel do mandato</p>
+        <h2 id="login-title">Acesse o painel</h2>
+
+        <div id="auth-message" class="message" role="status" aria-live="polite" hidden></div>
+
+        <form id="login-form" class="form-stack" autocomplete="off" novalidate>
+          <div class="field">
+            <label for="username">Usuário</label>
+            <input id="username" name="username" type="text" autocomplete="off" required autofocus>
+          </div>
+
+          <div class="field">
+            <label for="password">Senha</label>
+            <div class="password-field">
+              <input id="password" name="password" type="password" autocomplete="new-password" required>
+              <button class="button button-icon" type="button" data-toggle-password aria-label="Mostrar senha" aria-pressed="false">
+                <span aria-hidden="true">◉</span>
+              </button>
+            </div>
+          </div>
+
+          <button class="button button-primary button-block" type="submit">Entrar no painel</button>
+        </form>
+
+        <a class="back-link" href="../index.html">← Voltar ao site</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

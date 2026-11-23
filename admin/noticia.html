@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Editor de notícias do portal Yuri Rocha.">
+  <title>Nova notícia | Painel Yuri Rocha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="../js/admin-shell.js" defer></script>
+  <script src="../js/admin.js" defer></script>
+</head>
+<body class="admin-body" data-admin-page="noticia">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="dashboard-shell">
+    <aside class="sidebar" id="sidebar" data-shell="sidebar" aria-label="Navegação administrativa"></aside>
+    <div class="dashboard-main">
+      <header class="topbar" data-shell="topbar"></header>
+      <main id="conteudo" class="dashboard-content">
+        <div id="global-message" class="message toast-message" role="status" aria-live="polite" hidden></div>
+
+        <section class="workspace-hero">
+          <div>
+            <p class="eyebrow">Studio editorial</p>
+            <h1 id="editor-title">Nova notícia</h1>
+            <p class="muted">A página pública segue este padrão: título, imagem, texto, propaganda, carrossel e texto final.</p>
+          </div>
+          <a class="button button-secondary" href="noticias.html">← Voltar às notícias</a>
+        </section>
+
+        <section class="panel editor-studio" aria-labelledby="editor-title">
+          <form id="article-form" novalidate>
+            <input id="article-id" type="hidden">
+            <div class="editor-grid">
+              <div class="editor-fields">
+                <section class="editor-block">
+                  <div class="editor-block-head">
+                    <div>
+                      <h3>Título</h3>
+                      <p>Abre a página pública. O resumo aparece só na listagem de notícias.</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="article-title">Título *</label>
+                    <input id="article-title" type="text" maxlength="140" required>
+                  </div>
+                  <div class="form-row">
+                    <div class="field">
+                      <label for="article-slug">Slug / identificador *</label>
+                      <input id="article-slug" type="text" maxlength="160" pattern="[a-z0-9-]+" required aria-describedby="slug-hint">
+                      <small id="slug-hint">Use letras minúsculas, números e hífens.</small>
+                    </div>
+                    <div class="field">
+                      <label for="article-category">Categoria *</label>
+                      <select id="article-category" required>
+                        <option value="">Selecione</option>
+                        <option>Obras</option><option>Educação</option><option>Saúde</option>
+                        <option>Infraestrutura</option><option>Desenvolvimento</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="field">
+                      <label for="article-date">Data *</label>
+                      <input id="article-date" type="date" required>
+                    </div>
+                    <div class="field">
+                      <label for="article-status">Status *</label>
+                      <select id="article-status" required>
+                        <option>Rascunho</option><option>Publicado</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="article-summary">Resumo da listagem *</label>
+                    <textarea id="article-summary" rows="3" maxlength="300" required></textarea>
+                    <small><span id="summary-count">0</span>/300 caracteres</small>
+                  </div>
+                </section>
+
+                <section class="editor-block">
+                  <div class="editor-block-head">
+                    <div>
+                      <h3>Imagem de capa</h3>
+                      <p>Uma foto principal, em destaque no topo da notícia.</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="cover-url">URL da imagem</label>
+                    <input id="cover-url" type="url" placeholder="Cole um link de imagem, se preferir">
+                  </div>
+                  <div class="field">
+                    <label for="cover-upload">Ou envie um arquivo</label>
+                    <input id="cover-upload" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+                    <small>JPEG, PNG, WebP ou GIF. Máximo de 2 MB.</small>
+                  </div>
+                  <div id="cover-file-info" class="file-info" aria-live="polite"></div>
+                </section>
+
+                <section class="editor-block">
+                  <div class="editor-block-head">
+                    <div>
+                      <h3>Texto</h3>
+                      <p>Primeiro bloco de leitura, logo abaixo da imagem.</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="article-content">Texto inicial *</label>
+                    <textarea id="article-content" rows="10" required placeholder="Escreva o primeiro texto. Títulos com ##, **negrito**, *itálico* e listas são aceitos."></textarea>
+                  </div>
+                </section>
+
+                <section class="editor-block">
+                  <div class="editor-block-head">
+                    <div>
+                      <h3>Propaganda</h3>
+                      <p>Opcional. Envie uma imagem, um vídeo da galeria ou um link do YouTube.</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="ad-type">Tipo</label>
+                    <select id="ad-type">
+                      <option value="imagem">Imagem</option>
+                      <option value="video">Vídeo</option>
+                    </select>
+                  </div>
+                  <div id="ad-image-fields">
+                    <div class="field">
+                      <label for="ad-url">URL da imagem</label>
+                      <input id="ad-url" type="url" placeholder="Cole um link de imagem, se preferir">
+                    </div>
+                    <div class="field">
+                      <label for="ad-upload">Ou envie um arquivo</label>
+                      <input id="ad-upload" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+                      <small>JPEG, PNG, WebP ou GIF. Máximo de 2 MB.</small>
+                    </div>
+                    <div id="ad-file-info" class="file-info" aria-live="polite"></div>
+                  </div>
+                  <div id="ad-video-fields" hidden>
+                    <div class="field">
+                      <label for="ad-video">Link do YouTube</label>
+                      <input id="ad-video" type="url" placeholder="https://www.youtube.com/watch?v=…">
+                    </div>
+                    <div class="field">
+                      <label for="ad-video-upload">Ou envie um vídeo da galeria</label>
+                      <input id="ad-video-upload" type="file" accept="video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov">
+                      <small>MP4, WebM ou MOV. Máximo de 50 MB.</small>
+                    </div>
+                    <div id="ad-video-info" class="file-info" aria-live="polite"></div>
+                  </div>
+                </section>
+
+                <section class="editor-block">
+                  <div class="editor-block-head">
+                    <div>
+                      <h3>Carrossel de imagens</h3>
+                      <p>Opcional. Envie arquivos de imagem. Não cole o endereço desta página.</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="gallery-urls">URLs das imagens</label>
+                    <textarea id="gallery-urls" rows="3" placeholder="Uma URL de imagem por linha, se preferir"></textarea>
+                  </div>
+                  <div class="field">
+                    <label for="gallery-upload">Adicionar arquivos</label>
+                    <input id="gallery-upload" type="file" multiple accept="image/jpeg,image/png,image/webp,image/gif">
+                    <small>Até 8 imagens, 2 MB por arquivo.</small>
+                  </div>
+                  <div id="gallery-file-list" class="gallery-file-list" aria-live="polite"></div>
+                </section>
+
+                <section class="editor-block">
+                  <div class="editor-block-head">
+                    <div>
+                      <h3>Texto final</h3>
+                      <p>Opcional. Só aparece no site se você escrever este texto.</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="article-content-2">Texto de encerramento</label>
+                    <textarea id="article-content-2" rows="8" placeholder="Escreva o texto que fecha a matéria (opcional)"></textarea>
+                  </div>
+                </section>
+              </div>
+              <aside class="live-preview" aria-labelledby="live-preview-title">
+                <div class="preview-label"><h3 id="live-preview-title">Pré-visualização</h3><span>Tempo real</span></div>
+                <article id="preview-card" class="preview-card"></article>
+                <button id="open-preview" class="button button-secondary button-block" type="button">Abrir prévia completa</button>
+                <a id="view-site" class="button button-primary button-block" href="../noticias.html" target="_blank" rel="noopener" hidden>Ver no site público</a>
+              </aside>
+            </div>
+            <div class="form-actions">
+              <a class="button button-secondary" href="noticias.html">Cancelar</a>
+              <button class="button button-primary" type="submit">Salvar no banco e no site</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+  <dialog id="preview-dialog" class="preview-dialog" aria-labelledby="preview-dialog-title">
+    <div class="dialog-header">
+      <div><p class="eyebrow">Prévia</p><h2 id="preview-dialog-title">Visualização da notícia</h2></div>
+      <button class="button button-icon" type="button" data-close-preview aria-label="Fechar prévia">×</button>
+    </div>
+    <article id="dialog-preview-content" class="article-preview"></article>
+  </dialog>
+</body>
+</html>

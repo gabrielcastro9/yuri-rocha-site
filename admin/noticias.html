@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Gestão de notícias do portal Yuri Rocha.">
+  <title>Notícias | Painel Yuri Rocha</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="../js/admin-shell.js" defer></script>
+  <script src="../js/admin.js" defer></script>
+</head>
+<body class="admin-body" data-admin-page="noticias">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="dashboard-shell">
+    <aside class="sidebar" id="sidebar" data-shell="sidebar" aria-label="Navegação administrativa"></aside>
+    <div class="dashboard-main">
+      <header class="topbar" data-shell="topbar"></header>
+      <main id="conteudo" class="dashboard-content">
+        <div id="global-message" class="message toast-message" role="status" aria-live="polite" hidden></div>
+
+        <section class="workspace-hero">
+          <div>
+            <p class="eyebrow">Conteúdo público</p>
+            <h1>Notícias do portal</h1>
+            <p class="muted">O que você publica aqui aparece na home e na página de notícias. <span id="news-count">0 publicação(ões)</span></p>
+          </div>
+          <a class="button button-primary" href="noticia.html">＋ Nova notícia</a>
+        </section>
+
+        <div class="toolbar">
+          <div class="search-field">
+            <label class="sr-only" for="news-search">Buscar notícias</label>
+            <span aria-hidden="true">⌕</span>
+            <input id="news-search" type="search" placeholder="Buscar por título, resumo ou categoria…">
+          </div>
+          <div class="field inline-field">
+            <label for="status-filter">Status</label>
+            <select id="status-filter">
+              <option value="">Todos</option>
+              <option value="Publicado">Publicado</option>
+              <option value="Rascunho">Rascunho</option>
+            </select>
+          </div>
+          <div class="field inline-field">
+            <label for="category-filter">Categoria</label>
+            <select id="category-filter">
+              <option value="">Todas</option>
+              <option>Obras</option>
+              <option>Educação</option>
+              <option>Saúde</option>
+              <option>Infraestrutura</option>
+              <option>Desenvolvimento</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="news-board" class="content-board"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <span aria-hidden="true">▤</span>
+          <h3>Nenhuma notícia nesta vista</h3>
+          <p>Crie uma publicação ou ajuste os filtros.</p>
+          <a class="button button-primary" href="noticia.html">Escrever notícia</a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <dialog id="preview-dialog" class="preview-dialog" aria-labelledby="preview-dialog-title">
+    <div class="dialog-header">
+      <div><p class="eyebrow">Prévia</p><h2 id="preview-dialog-title">Visualização da notícia</h2></div>
+      <button class="button button-icon" type="button" data-close-preview aria-label="Fechar prévia">×</button>
+    </div>
+    <article id="dialog-preview-content" class="article-preview"></article>
+  </dialog>
+  <dialog id="confirm-dialog" class="confirm-dialog" aria-labelledby="confirm-title">
+    <h2 id="confirm-title">Excluir notícia?</h2>
+    <p>Esta ação remove o item do banco de dados e do site público.</p>
+    <div class="form-actions">
+      <button class="button button-secondary" type="button" data-cancel-delete>Cancelar</button>
+      <button class="button button-danger" type="button" data-confirm-delete>Excluir</button>
+    </div>
+  </dialog>
+</body>
+</html>
